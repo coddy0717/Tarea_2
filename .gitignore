@@ -1,0 +1,26 @@
+# Entorno virtual
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+
+
+# Cobertura de pruebas
+.coverage
+coverage.xml
+htmlcov/
+
+# Reportes generados (contenido de ejemplo, no el código)
+output/*.xlsx
+output/*.html
+!output/.gitkeep
+
+# Editor / SO
+.vscode/
+.idea/
+Thumbs.db
