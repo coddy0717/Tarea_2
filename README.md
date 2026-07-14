@@ -114,6 +114,6 @@ cada push/PR hacia `main`, `developer` y `staging`, y realiza:
 
 | Rol                 | Integrante(s) | Aporte                                              |
 |----------------------|---------------|------------------------------------------------------|
-| Líder del proyecto    | _por definir_ | Configuración del repositorio, ramas y CI.           |
-| Equipo A              | _por definir_ | `processor.py` — cálculo de KPIs.                    |
-| Equipo B              | _por definir_ | `report_generator.py` — generación de reportes.      |
+| Líder del proyecto    | Coddy Coello | Configuración del repositorio, ramas y CI.           |
+| Equipo A              | Coddy Coello | `processor.py` — cálculo de KPIs.                    |
+| Equipo B              | Coddy Coello | `report_generator.py` — generación de reportes.      |
