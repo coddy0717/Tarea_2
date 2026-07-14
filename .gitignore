@@ -24,3 +24,6 @@ output/*.html
 .vscode/
 .idea/
 Thumbs.db
+
+# Enunciado de la actividad (no se sube al repo)
+ta2/
