@@ -1,3 +1,9 @@
+"""Pruebas de integración: verifican que data_loader, processor y
+report_generator trabajen correctamente en conjunto a través de la capa
+`main`, sin pasar por la interfaz de línea de comandos como proceso aparte
+(eso lo cubren las pruebas end-to-end en test_e2e.py).
+"""
+
 from report_automation.main import build_arg_parser, main, run
 
 VALID_CSV = """date,category,product,quantity,unit_price
@@ -40,6 +46,24 @@ def test_main_returns_one_when_input_missing(tmp_path, capsys):
     captured = capsys.readouterr()
     assert exit_code == 1
     assert "[ERROR]" in captured.err
+
+
+def test_run_propagates_processor_output_into_excel_report(tmp_path):
+    """Verifica que los KPIs calculados por `processor` lleguen intactos
+    hasta el archivo Excel generado por `report_generator`, es decir, que
+    la integración entre ambos módulos no pierda ni distorsione datos."""
+    import openpyxl
+
+    csv_path = tmp_path / "transactions.csv"
+    csv_path.write_text(VALID_CSV, encoding="utf-8")
+    output_dir = tmp_path / "output"
+
+    result = run(csv_path, output_dir)
+
+    workbook = openpyxl.load_workbook(result["excel_path"])
+    category_sheet = workbook["Categorías"]
+    assert category_sheet.cell(row=2, column=1).value == "Electrónica"
+    assert category_sheet.cell(row=2, column=2).value == result["summary"]["total_revenue"]
 
 
 def test_build_arg_parser_requires_input():

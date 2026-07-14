@@ -67,6 +67,21 @@ pytest --cov=src/report_automation --cov-report=term-missing --cov-report=html
 
 El reporte de cobertura en HTML se genera en `htmlcov/index.html`.
 
+### Categorías de pruebas
+
+| Archivo | Tipo | Qué valida |
+|---|---|---|
+| `test_data_loader.py`, `test_processor.py`, `test_report_generator.py` | Unitarias | Cada función de forma aislada (parsing, KPIs, generación de reportes). |
+| `test_integration.py` | Integración | Que `data_loader` + `processor` + `report_generator` trabajen juntos correctamente a través de `main.run()`/`main.main()`. |
+| `test_e2e.py` | End-to-end | La aplicación ejecutada como la usaría un usuario real, invocando `python -m report_automation.main` como subproceso y verificando archivos y salida por consola. |
+| `test_regression.py` | Regresión | Fija valores de referencia calculados sobre `data/sample_transactions.csv` (KPIs y contenido de los reportes) para detectar cambios no intencionados en la lógica. |
+
+Ejecutar solo una categoría, por ejemplo:
+
+```bash
+pytest tests/test_e2e.py -v
+```
+
 ## Estilo de código
 
 ```bash

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 
 from report_automation.data_loader import load_transactions
@@ -77,3 +79,15 @@ def test_load_transactions_rejects_empty_category_or_product(tmp_path):
 
     assert transactions == []
     assert len(errors) == 1
+
+
+def test_load_transactions_wraps_os_error_as_data_load_error(tmp_path, monkeypatch):
+    csv_path = write_csv(tmp_path, VALID_CSV)
+
+    def broken_open(self, *args, **kwargs):
+        raise OSError("dispositivo no disponible")
+
+    monkeypatch.setattr(Path, "open", broken_open)
+
+    with pytest.raises(DataLoadError):
+        load_transactions(csv_path)
