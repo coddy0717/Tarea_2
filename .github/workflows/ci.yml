@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main, developer, staging]
+  pull_request:
+    branches: [main, developer, staging]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Análisis de estilo (flake8)
+        run: flake8 src tests
+
+      - name: Ejecutar pruebas unitarias con cobertura
+        run: |
+          pytest --cov=src/report_automation --cov-report=term-missing \
+                 --cov-report=html --cov-report=xml
+
+      - name: Publicar reporte de cobertura (HTML)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html-report
+          path: htmlcov/
+
+      - name: Publicar reportes de ejemplo generados
+        if: always()
+        run: |
+          python -m src.report_automation.main --input data/sample_transactions.csv --output-dir output || true
+        shell: bash
+
+      - name: Subir reportes generados como artefacto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-generados
+          path: |
+            output/*.xlsx
+            output/*.html

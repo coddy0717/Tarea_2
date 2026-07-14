@@ -1,0 +1,11 @@
+date,category,product,quantity,unit_price
+2025-01-05,Electrónica,Laptop,2,850.00
+2025-01-08,Electrónica,Mouse,10,15.50
+2025-01-12,Oficina,Resma de papel,20,4.25
+2025-01-15,Oficina,Silla ergonómica,3,120.00
+2025-02-02,Electrónica,Laptop,1,850.00
+2025-02-10,Oficina,Resma de papel,15,4.25
+2025-02-18,Hogar,Lámpara LED,8,18.75
+2025-03-01,Electrónica,Mouse,25,15.50
+2025-03-09,Hogar,Lámpara LED,5,18.75
+2025-03-20,Oficina,Silla ergonómica,2,120.00
