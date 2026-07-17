@@ -22,7 +22,7 @@ def make_tx(date, category, product, quantity, unit_price):
 
 
 TRANSACTIONS = [
-    make_tx("2025-01-05", "Electrónica", "Laptop", 2, 850.0),
+    make_tx("2025-01-05", "Electrónica", "Laptop", r, 850.0),
     make_tx("2025-01-08", "Electrónica", "Mouse", 10, 15.5),
     make_tx("2025-02-02", "Electrónica", "Laptop", 1, 850.0),
     make_tx("2025-02-10", "Oficina", "Papel", 15, 4.25),
