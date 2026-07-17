@@ -62,10 +62,14 @@ productos.
 ## Pruebas y cobertura
 
 ```bash
-pytest --cov=src/report_automation --cov-report=term-missing --cov-report=html
+pytest --cov=src/report_automation --cov-report=term-missing --cov-report=html --cov-context=test
 ```
 
-El reporte de cobertura en HTML se genera en `htmlcov/index.html`.
+El reporte de cobertura en HTML se genera en `htmlcov/index.html`. Gracias a
+`--cov-context=test`, dentro del reporte cada línea de código muestra qué
+prueba(s) la cubrieron: al abrir un archivo, activa el interruptor **"Show
+contexts"** (arriba a la derecha) y pasa el cursor sobre cualquier línea
+para ver el nombre de la prueba correspondiente.
 
 ### Categorías de pruebas
 
