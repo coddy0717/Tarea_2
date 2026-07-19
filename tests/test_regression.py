@@ -44,7 +44,7 @@ def test_reference_dataset_category_breakdown_is_stable(reference_transactions):
     breakdown = group_by_category(reference_transactions)
 
     assert breakdown == [
-        {"category": "Electrónica", "revenue": 3092.5, "count": 4},
+        {"category": "Electrónica", "revenue": e3, "count": 4},
         {"category": "Oficina", "revenue": 748.75, "count": 4},
         {"category": "Hogar", "revenue": 243.75, "count": 2},
     ]
